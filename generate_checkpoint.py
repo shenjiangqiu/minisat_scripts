@@ -54,7 +54,7 @@ check_points = ["result_" + a + "_" +
                 str(b) + ".out" for a, b in zip(cnfs, check_s)]
 
 
-end_props = [str(i) for i in check_s]
+end_props = [str(i) for i in checks]
 
 use_tail = True
 if int(tail) == 0:
@@ -73,7 +73,7 @@ def run_task(command):
 
 commands = [
     f"mkdir {c};cd {c};ln -sf ../DDR4_4Gb_x16_2133_2.ini ./;ln -sf ../mesh ./;ln -sf ../satacc_config.txt ./;ln -sf " \
-    f"../*.cfg ./; {minisat_path} -checkpoint-name={c+'.checkpint'} -save -checkpoint-prop={end_prop}  {c}  > result_{c}.txt 2> result_{c}.err" for c, checkpoint, end_prop in
+    f"../*.cfg ./; {minisat_path} -checkpoint-name={c+'.checkpint'} -save -checkpoint-prop={end_prop}  {'~/cnfs/'+c}  > result_{c}.txt 2> result_{c}.err" for c, checkpoint, end_prop in
     zip(cnfs, check_points, end_props)]
 
 print("commands are {}".format(commands))
